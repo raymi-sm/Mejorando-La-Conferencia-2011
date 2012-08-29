@@ -1,4 +1,8 @@
-$reset: 0px; 
+$reset: 0px;
+$mainColor: #fff;
+$secondMainColor: #ff9306;
+$blockColor1: #0082ae;
+$blockColor2: #006383; 
 
 @mixin estructuraFont( $tamañoFontGeneral : 16px ){
 	
@@ -19,7 +23,7 @@ $reset: 0px;
 	padding: $reset;
 }
 
-@mixin flotando( $negativeSpace : 0px ){
+@mixin flotando( $negativeSpace : -5px ){
 	
 	display: inline-block;
 	vertical-align: top;
@@ -32,6 +36,12 @@ $reset: 0px;
    -moz-transition:$propiedad $duracion $tipo;  
    -o-transition:$propiedad $duracion $tipo;  
    transition:$propiedad $duracion $tipo;  
+}
+
+@mixin border ( $tamaño : 5px, $densidad : solid, $color : #92cf16 ) {
+	
+	border-top: $tamaño $densidad $color;
+	border-bottom: $tamaño $densidad $color;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -81,9 +91,87 @@ table {
 
 body {
 	
-	background: 
-			url("images/bg-+-1.png"),
-			url("images/bg-2.jpg");
+	background: url("images/bg-+-1.png"),
+		
+		url("images/bg-2.jpg");
+
+	color: $mainColor;
+	font-family:'PT Sans', sans-serif;
+
+}
+
+h1{
+
+	color: $secondMainColor;
+	font-size: 50px;
+	font-weight: 700;
+	@include flotando;
+
+	span{
+
+		font-size: 40px;	
+		color: #fff; 
+		display: block;
+
+	}
+}
+
+
+h3{ 
+	
+	color: #ff9306;
+	font-size: 30px;
+
+	span{
+
+		color: $mainColor;
+
+	}
+
+}
+
+header{
+	
+	background: rgb( 0, 76, 101 ) url("images/header-bg.png");
+	@include border( 15px );
+	border-bottom: none;
+	position: relative;
+	z-index: 1;
+
+	.container{
+
+		@include border;
+		border-top: none;
+		overflow: hidden;
+
+		div{
+
+			float: left;
+			padding: 10px 0;
+
+		}
+
+		ul{
+
+			float: right;
+
+			li{
+
+				@include flotando;
+
+				padding: 35px;
+
+				margin: 0 -5px 0 0;
+
+				&:first-child{ background: rgba( 0, 99, 131, 0.5 ); }
+
+				&:last-child{ background: rgb( 0, 130, 174); }
+
+			}
+
+		}
+
+	}
 
 }
 
@@ -91,4 +179,228 @@ body {
 	
 	width: 1000px;
 	margin: 0 auto;	
- }
+}
+
+ #block-1{
+
+ 	padding: 20px 0;
+
+ 	ul{ 
+
+ 		@include flotando;
+ 		margin-left: 10%;
+
+ 		li{ 
+
+ 			@include flotando; 
+
+ 			&:nth-child(1){ 
+
+ 				a{ 
+ 					background-position: -100px 0px; 
+ 					padding: 30px 45px; 
+
+ 					&:hover{
+
+ 						background-position: -100px 90px;
+
+ 					}
+ 				}
+
+ 			}
+
+ 			&:nth-child(2){ 
+
+ 				a{ 
+ 					background-position: -200px 0; 
+ 					padding: 30px 72px; 
+
+ 					&:hover{
+
+ 						background-position: -200px 93px;
+
+ 					}
+ 				}
+ 			}
+
+ 			&:nth-child(3){ 
+
+ 				a{ 
+ 					background-position: 0px 0; 
+ 					padding: 50px 45px 26px 45px;
+
+ 					&:hover{
+
+ 						background-position: 0px 100px;
+
+ 					} 
+ 				}
+ 			}
+
+ 			&:nth-child(4){ 
+
+ 				a{ 
+ 					background-position: -383px 0; 
+ 					padding: 30px 72px; 
+
+ 					&:hover{
+
+ 						background-position: -383px 100px;
+
+ 					} 
+ 				}
+
+ 			}
+ 		}
+
+ 		a{ 
+ 			background: url("images/sprite.png");
+ 			display: block;
+ 			text-indent: -9999px;
+ 			@include transiciones(all, 0.3s);
+
+ 			&:hover{ -webkit-transform: rotate(360deg); }
+ 		}
+ 	}
+
+}
+
+#feature{
+	
+	padding: 30px 0 35px 0;
+
+	h3{
+
+		padding: 0 0 20px 0;
+
+	}
+
+	#horarios{
+
+		@include border;
+
+		li{
+
+			height: 50px;
+			padding: 15px 36px;
+			@include transiciones(all, 0.5s ); 
+
+			&:nth-child(1){ background: $blockColor2; }
+
+			&:nth-child(2){ background: $blockColor1; }
+
+			&:nth-child(3){ background: $blockColor2; }
+
+			&:nth-child(4){ background: $blockColor1; }
+
+			&:nth-child(5){ background: $blockColor2; }
+
+			&:nth-child(6){ background: $blockColor1; }
+
+			&:hover{  
+
+			-webkit-transform: scale(1.1);
+
+			}
+
+		}
+
+		p{
+
+			padding: 0 0 10px 0;
+			text-align: center;
+
+		}
+
+	}
+
+	li{
+
+		@include flotando;
+
+	}
+
+}
+
+#primary{
+	
+	background: $blockColor2;
+
+	p{
+
+
+
+	}
+}
+
+#secondary{
+	
+	background: $blockColor1;
+}
+
+#sponsors{
+	
+	@include border;
+	padding: 10px 0;
+
+	li{
+
+		margin: 0 32px 0 0;
+
+		&:last-child{
+
+			margin-right: 0;
+
+		}
+
+		&:nth-child(2){
+
+			padding: 17px 0 0 0;
+
+		}
+
+		&:nth-child(3){
+
+			padding: 20px 0 0 0;
+
+		}
+
+		&:nth-child(4){
+
+			padding: 16px 0 0 0;
+
+		}
+
+	}	
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
