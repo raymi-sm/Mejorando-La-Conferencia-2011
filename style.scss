@@ -44,6 +44,13 @@ $blockColor2: #006383;
 	border-bottom: $tamaño $densidad $color;
 }
 
+@mixin textoSombra( $horizontal : 1px, $vertical : 3px, $bradius : 2px, $scolor : #000000 ){ 
+	
+	text-shadow: $horizontal $vertical $bradius $scolor;
+    filter: dropshadow(color=#000000, offx=1, offy=3);
+
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -100,6 +107,31 @@ body {
 
 }
 
+footer{
+
+	margin: 40px 0 50px 0;
+
+	div{
+
+		padding: 30px;
+		margin: 0 40px 0 0;
+
+	}
+
+	p{
+
+		margin: 20px 80px 0 0;
+
+	}
+
+	h3{
+
+		padding: 20px 0;
+
+	}
+	
+}
+
 h1{
 
 	color: $secondMainColor;
@@ -121,6 +153,9 @@ h3{
 	
 	color: #ff9306;
 	font-size: 30px;
+	padding: $reset;
+	margin: $reset;
+	text-align: left;
 
 	span{
 
@@ -128,6 +163,12 @@ h3{
 
 	}
 
+}
+
+h4{
+	
+	color: $secondMainColor;
+	@include flotando;
 }
 
 header{
@@ -175,10 +216,67 @@ header{
 
 }
 
+.block{
+	
+	background: $blockColor2;
+	border-top: 5px solid #92cf16;
+	overflow: hidden;
+
+	div{
+
+		background: #004c65;
+		float:left;
+
+	}
+
+}
+
 .container{ 
 	
 	width: 1000px;
 	margin: 0 auto;	
+}
+
+#agenda{
+
+	border-top: 5px solid #92CF16;
+	
+	article{
+
+		background: $blockColor2;
+		margin: 0 0 13px 0;
+		overflow: hidden;
+
+	}
+
+	h2{
+
+		background: #004c65;
+		padding: 20px;
+		font-size: 25px;
+
+	}
+
+	h3{
+
+		font-size: 20px;
+		margin: 13px;
+
+	}
+
+	div{
+
+		float: left;
+		padding: 0 30px;
+
+	}
+
+	p{
+
+		padding: 0 0 30px 0;
+		@include textoSombra;
+
+	}
 }
 
  #block-1{
@@ -265,9 +363,55 @@ header{
 
 }
 
+#conf-ciudad{
+	
+	h3{ 
+
+		padding: 15px 0;
+
+	}
+
+	.block{
+
+		div{
+
+			padding: 5px;
+			margin: 0 30px 0 0;
+
+		}
+
+		p{
+
+			margin: 0 100px 0 0;
+			padding: 25px 0 0 0;
+
+
+		}
+	}
+
+	ul{
+
+		@include flotando;
+		margin: 0 50px 0 90px;
+		width: 20%;
+
+		&:first-child{
+			background: red;	
+		}
+	}
+	
+}
+
+#ciudades{
+	
+	margin: 40px 0;
+
+}
+
+
 #feature{
 	
-	padding: 30px 0 35px 0;
+	padding: 30px 0 0 0;
 
 	h3{
 
@@ -322,26 +466,102 @@ header{
 
 }
 
+#feature-content{
+	
+	background: $blockColor1;
+	position: relative;
+	padding: 0 0 115px 0;
+
+}
+
 #primary{
 	
 	background: $blockColor2;
 
+	div{
+
+		float: left;
+		max-width:441px;
+
+	}
+
 	p{
 
-
+		padding: 25px 0;
+		margin: 0 65px 0 0;
 
 	}
 }
 
 #secondary{
-	
-	background: $blockColor1;
+
+	position: absolute;
+	width: 100%;
+
+
+	#social{
+
+		float: left;
+		margin: 25px 0 0 225px;
+
+	}
+
+	#inscripcion{
+
+		margin: 5px 0 0 35px;
+		width: 55%;
+
+		float: left;
+
+		span{
+
+			display: block;
+			padding: 0 0 10px 0;
+			font-size: 20px;
+			@include textoSombra;
+
+		}
+
+		h3{
+
+			font-size: 35px;
+			padding: 0 0 5px 0; 
+			@include textoSombra;
+		}
+
+		form{
+
+			input[type="submit"]{
+
+				background: url("images/inscribete.png") no-repeat;
+				border: none;
+				text-indent: -9999px;
+				width: 127px;
+				padding: 17px 0 0 0;
+				position: absolute;
+				bottom: -4px;
+				right: 10px;
+
+			}
+
+			input[type="text"]{
+
+				padding: 8px 0 5px 0;
+				width: 445px;
+				border: none;
+
+			}
+
+		}
+
+	}
 }
 
 #sponsors{
 	
 	@include border;
 	padding: 10px 0;
+	margin: 0 0 20px 0;
 
 	li{
 
@@ -368,6 +588,14 @@ header{
 		&:nth-child(4){
 
 			padding: 16px 0 0 0;
+
+		}
+
+		@include transiciones(all);
+
+		&:hover{
+
+			-webkit-transform: scale(1.3);
 
 		}
 
